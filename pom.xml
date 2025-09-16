@@ -8,11 +8,13 @@
         <version>3.5.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+    <!-- Para el JAR -->
     <groupId>org.example</groupId>
     <artifactId>CuidadoDeMascota</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1-prueba</version>
     <name>CuidadoDeMascotas</name>
     <description>CuidadoDeMascota</description>
+
     <url/>
     <licenses>
         <license/>
@@ -46,7 +48,6 @@
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -67,6 +68,17 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <!-- JDBC -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        <!-- Apache Commons Lang3 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.14.0</version> <!-- usa la última estable -->
         </dependency>
     </dependencies>
 
