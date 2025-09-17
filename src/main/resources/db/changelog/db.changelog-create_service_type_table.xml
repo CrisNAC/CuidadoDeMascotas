@@ -4,7 +4,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
     <!-- ===== Tabla Service Types ===== -->
-    <changeSet id="3" author="equipo">
+    <changeSet id="3" author="CrisNAC">
         <createTable tableName="service_types">
             <column name="id" type="BIGSERIAL">
                 <constraints primaryKey="true" nullable="false"/>

@@ -11,12 +11,13 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@MappedSuperclass // <- esta anotación indica que no se mapea directamente a tabla
+@MappedSuperclass // <- esta anotacion indica que no se mapea directamente a tabla
 public abstract class BaseEntity implements Serializable {
+    private static final long serialVersionUID = 1L; // unico para todas las entidades
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // clave primaria genérica
+    private Long id; // clave primaria generica
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)

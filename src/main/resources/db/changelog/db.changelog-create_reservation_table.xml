@@ -24,6 +24,7 @@
             <column name="service_date" type="TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
+            <!-- Aca se usa el enum-->
             <column name="state" type="VARCHAR(20)">
                 <constraints nullable="false"/>
             </column>
