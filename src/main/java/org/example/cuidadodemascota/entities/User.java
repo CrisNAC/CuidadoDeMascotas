@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Getter
 @Setter
 @Entity
@@ -37,4 +40,16 @@ public class User extends BaseEntity {
 
     @Column(name = "profile_photo", columnDefinition = "TEXT")
     private String profilePhoto;
+
+    /*
+    * Un User puede marcar como favoritos muchos Service.
+    * Un Service puede ser favorito de muchos User.
+    * */
+    @ManyToMany
+    @JoinTable(
+            name = "user_favorites",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "service_id")
+    )
+    private Set<Service> favoriteServices = new HashSet<>();
 }

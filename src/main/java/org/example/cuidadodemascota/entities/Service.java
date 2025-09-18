@@ -3,8 +3,9 @@ package org.example.cuidadodemascota.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -12,6 +13,10 @@ import java.math.BigDecimal;
 @Table(name = "services")
 public class Service extends BaseEntity {
 
+    /*
+    * ManyToOne Service - User
+    * OneToMany User - Servicie
+    * */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_user", nullable = false)
     private User user;
@@ -28,4 +33,7 @@ public class Service extends BaseEntity {
 
     @Column(name = "high_price", nullable = false, precision = 8, scale = 2)
     private BigDecimal highPrice;
+
+    @ManyToMany(mappedBy = "favoriteServices")
+    private Set<User> likedByUsers = new HashSet<>();
 }

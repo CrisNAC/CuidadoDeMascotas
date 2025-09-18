@@ -10,6 +10,7 @@ import lombok.Setter;
 @Table(name = "ratings")
 public class Rating extends BaseEntity {
 
+    // Relacion rating - reservation
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_reservation", nullable = false, unique = true)
     private Reservation reservation;
