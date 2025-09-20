@@ -3,10 +3,10 @@ package org.example.cuidadodemascota.commons.entities.service;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.example.cuidadodemascota.commons.entities.base.BaseEntity;
-import org.example.cuidadodemascota.commons.entities.credential.User;
+import org.example.cuidadodemascota.commons.entities.base.AbstractEntity;
+import org.example.cuidadodemascota.commons.entities.reservation.ReservationService;
+import org.example.cuidadodemascota.commons.entities.user.Carer;
 
-import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,29 +14,23 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "services")
-public class Service extends BaseEntity {
+public class Service extends AbstractEntity {
 
-    /*
-    * ManyToOne Service - User
-    * OneToMany User - Servicie
-    * */
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_user", nullable = false)
-    private User user;
+    @ManyToOne
+    @JoinColumn(name = "fk_carer", nullable = false)
+    private Carer carer;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "fk_service_type", nullable = false)
     private ServiceType serviceType;
 
-    @Column(name = "description", nullable = false, length = 255)
+    @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Column(name = "low_price", nullable = false, precision = 8, scale = 2)
-    private BigDecimal lowPrice;
+    @Column(nullable = false)
+    private Double price;
 
-    @Column(name = "high_price", nullable = false, precision = 8, scale = 2)
-    private BigDecimal highPrice;
-
-    @ManyToMany(mappedBy = "favoriteServices")
-    private Set<User> likedByUsers = new HashSet<>();
+    // 1-N con ReservationService
+    @OneToMany(mappedBy = "service", fetch = FetchType.LAZY)
+    private Set<ReservationService> reservationServices = new HashSet<>();
 }

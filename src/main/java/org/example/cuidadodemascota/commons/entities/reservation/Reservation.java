@@ -3,35 +3,42 @@ package org.example.cuidadodemascota.commons.entities.reservation;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.example.cuidadodemascota.commons.entities.service.Service;
-import org.example.cuidadodemascota.commons.entities.base.BaseEntity;
-import org.example.cuidadodemascota.commons.entities.credential.User;
-import org.example.cuidadodemascota.commons.entities.enums.ReservationState;
+import org.example.cuidadodemascota.commons.entities.base.AbstractEntity;
+import org.example.cuidadodemascota.commons.entities.rating.Rating;
+import org.example.cuidadodemascota.commons.entities.user.Owner;
+import org.example.cuidadodemascota.commons.entities.user.Carer;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "reservations")
-public class Reservation extends BaseEntity {
+public class Reservation extends AbstractEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "fk_owner", nullable = false)
-    private User owner;
+    private Owner owner;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "fk_carer", nullable = false)
-    private User carer;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_service", nullable = false)
-    private Service service;
+    private Carer carer;
 
     @Column(name = "service_date", nullable = false)
     private LocalDateTime serviceDate;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "state", nullable = false, length = 20)
-    private ReservationState state;
+    private String description;
+
+    @Column(name = "enum_reservation_status", nullable = false, length = 20)
+    private String status;
+
+    // 1-N -> reservation_services
+    @OneToMany(mappedBy = "reservation", fetch = FetchType.LAZY)
+    private Set<ReservationService> reservationServices = new HashSet<>();
+
+    // 1-1 -> rating
+    @OneToOne(mappedBy = "reservation", fetch = FetchType.LAZY)
+    private Rating rating;
 }
