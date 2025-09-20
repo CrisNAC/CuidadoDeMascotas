@@ -1,8 +1,11 @@
-package org.example.cuidadodemascota.commons.entities;
+package org.example.cuidadodemascota.commons.entities.service;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.example.cuidadodemascota.commons.entities.base.BaseEntity;
+import org.example.cuidadodemascota.commons.entities.credential.User;
+
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;

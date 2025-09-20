@@ -1,8 +1,9 @@
-package org.example.cuidadodemascota.commons.entities;
+package org.example.cuidadodemascota.commons.entities.credential;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.example.cuidadodemascota.commons.entities.base.BaseEntity;
 
 @Getter
 @Setter

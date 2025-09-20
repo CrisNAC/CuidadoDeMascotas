@@ -1,8 +1,12 @@
-package org.example.cuidadodemascota.commons.entities;
+package org.example.cuidadodemascota.commons.entities.reservation;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.example.cuidadodemascota.commons.entities.service.Service;
+import org.example.cuidadodemascota.commons.entities.base.BaseEntity;
+import org.example.cuidadodemascota.commons.entities.credential.User;
+import org.example.cuidadodemascota.commons.entities.enums.ReservationState;
 
 import java.time.LocalDateTime;
 

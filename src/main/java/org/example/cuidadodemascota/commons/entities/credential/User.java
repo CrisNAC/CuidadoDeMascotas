@@ -1,8 +1,10 @@
-package org.example.cuidadodemascota.commons.entities;
+package org.example.cuidadodemascota.commons.entities.credential;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.example.cuidadodemascota.commons.entities.service.Service;
+import org.example.cuidadodemascota.commons.entities.base.AbstractEntity;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,7 +13,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "users")
-public class User extends BaseEntity {
+public class User extends AbstractEntity {
 
     @Column(name = "name", nullable = false, length = 60)
     private String name;
@@ -22,7 +24,7 @@ public class User extends BaseEntity {
     @Column(name = "user_name", nullable = false, length = 255)
     private String userName;
 
-    @Column(name = "hash_password", nullable = false, length = 255)
+    @Column(name = "hash_password", nullable = false, columnDefinition = "TEXT")
     private String hashPassword;
 
     @Column(name = "phone_number", nullable = false, length = 15)

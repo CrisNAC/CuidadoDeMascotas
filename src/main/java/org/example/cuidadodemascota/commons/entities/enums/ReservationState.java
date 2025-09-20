@@ -1,4 +1,4 @@
-package org.example.cuidadodemascota.commons.entities;
+package org.example.cuidadodemascota.commons.entities.enums;
 
 public enum ReservationState {
     Pending,
