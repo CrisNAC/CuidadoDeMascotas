@@ -3,18 +3,33 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!--
+        Cristian
+    -->
     <!--Tablas ya creadas-->
-    <include file="db/changelog/db.changelog-create_rol_table.xml"/>
-    <include file="db/changelog/db.changelog-create_user_table.xml"/>
-    <include file="db/changelog/db.changelog-create_service_type_table.xml"/>
-    <include file="db/changelog/db.changelog-create_service_table.xml"/>
-    <include file="db/changelog/db.changelog-create_reservation_table.xml"/>
-    <include file="db/changelog/db.changelog-create_rating_table.xml"/>
+    <include file="/db/changelog/changelog-cristian/db.changelog-create_rol_table.xml"/>
+    <include file="/db/changelog/changelog-cristian/db.changelog-create_user_table.xml"/>
+    <include file="/db/changelog/changelog-cristian/db.changelog-create_service_type_table.xml"/>
+    <include file="/db/changelog/changelog-cristian/db.changelog-create_service_table.xml"/>
+    <include file="/db/changelog/changelog-cristian/db.changelog-create_reservation_table.xml"/>
+    <include file="/db/changelog/changelog-cristian/db.changelog-create_rating_table.xml"/>
 
     <!--Nueva tabla-->
-    <include file="db/changelog/db.changelog-create_user_favorites_table.xml"/>
+    <include file="/db/changelog/changelog-cristian/db.changelog-create_user_favorites_table.xml"/>
 
     <!--Nueva columna en rol-->
-    <include file="db/changelog/db.changelog-add_column_rol.xml"/>
+    <include file="/db/changelog/changelog-cristian/db.changelog-add_column_rol.xml"/>
+
+    <!--
+        Jazmin
+    -->
+
+
+
+    <!--
+        Eliana
+    -->
+
 
 </databaseChangeLog>
