@@ -17,6 +17,7 @@ public class Role extends BaseEntity {
     @Column(name = "name", nullable = false, length = 50)
     private String name;
 
+    // N-M con Users a través de UserRole
     @OneToMany(mappedBy = "role")
     private Set<UserRole> userRoles = new HashSet<>();
 }

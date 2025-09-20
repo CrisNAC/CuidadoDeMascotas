@@ -35,8 +35,8 @@ public class User extends AbstractEntity {
     private String email;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_rol", nullable = false)
-    private Role rol;
+    @JoinColumn(name = "fk_role", nullable = false)
+    private Role role;
 
     @Column(name = "state", nullable = false)
     private Boolean state = true;

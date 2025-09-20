@@ -1,4 +1,38 @@
 package org.example.cuidadodemascota.commons.entities.pet;
 
-public class Pet {
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.example.cuidadodemascota.commons.entities.base.AbstractEntity;
+import org.example.cuidadodemascota.commons.entities.user.Owner;
+
+import java.time.LocalDate;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "pets")
+public class Pet extends AbstractEntity {
+
+    @ManyToOne
+    @JoinColumn(name = "id_owner", nullable = false)
+    private Owner owner;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_breed", nullable = false)
+    private Breed breed;
+
+    @Column(nullable = false, length = 60)
+    private String name;
+
+    @Column(name = "enum_pet_sizes", nullable = false, length = 10)
+    private String size;
+
+    private String description;
+
+    @Column(name = "date_birthday", nullable = false)
+    private LocalDate birthday;
+
+    @Column(name = "profile_photo", columnDefinition = "TEXT")
+    private String profilePhoto;
 }
