@@ -1,0 +1,17 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="20092025-drop-all-tables" author="CrisNAC">
+        <dropTable tableName="user_favorites" cascadeConstraints="true"/>
+        <dropTable tableName="ratings" cascadeConstraints="true"/>
+        <dropTable tableName="service_types" cascadeConstraints="true"/>
+        <dropTable tableName="reservations" cascadeConstraints="true"/>
+        <dropTable tableName="services" cascadeConstraints="true"/>
+        <dropTable tableName="users" cascadeConstraints="true"/>
+        <dropTable tableName="roles" cascadeConstraints="true"/>
+    </changeSet>
+
+</databaseChangeLog>
