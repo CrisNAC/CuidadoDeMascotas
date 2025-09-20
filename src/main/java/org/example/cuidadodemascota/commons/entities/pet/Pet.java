@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.cuidadodemascota.commons.entities.base.AbstractEntity;
+import org.example.cuidadodemascota.commons.entities.enums.PetSize;
 import org.example.cuidadodemascota.commons.entities.user.Owner;
 
 import java.time.LocalDate;
@@ -25,8 +26,9 @@ public class Pet extends AbstractEntity {
     @Column(nullable = false, length = 60)
     private String name;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "enum_pet_sizes", nullable = false, length = 10)
-    private String size;
+    private PetSize size;
 
     private String description;
 

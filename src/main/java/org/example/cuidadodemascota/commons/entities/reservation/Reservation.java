@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.cuidadodemascota.commons.entities.base.AbstractEntity;
+import org.example.cuidadodemascota.commons.entities.enums.ReservationState;
 import org.example.cuidadodemascota.commons.entities.rating.Rating;
 import org.example.cuidadodemascota.commons.entities.user.Owner;
 import org.example.cuidadodemascota.commons.entities.user.Carer;
@@ -31,8 +32,9 @@ public class Reservation extends AbstractEntity {
 
     private String description;
 
-    @Column(name = "enum_reservation_status", nullable = false, length = 20)
-    private String status;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "enum_reservation_state", nullable = false, length = 20)
+    private ReservationState size;
 
     // 1-N -> reservation_services
     @OneToMany(mappedBy = "reservation", fetch = FetchType.LAZY)
