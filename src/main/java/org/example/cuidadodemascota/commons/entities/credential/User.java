@@ -3,7 +3,8 @@ package org.example.cuidadodemascota.commons.entities.credential;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.example.cuidadodemascota.commons.entities.service.Service;
+import org.example.cuidadodemascota.commons.entities.user.Owner;
+import org.example.cuidadodemascota.commons.entities.user.Carer;
 import org.example.cuidadodemascota.commons.entities.base.AbstractEntity;
 
 import java.util.HashSet;
@@ -35,7 +36,7 @@ public class User extends AbstractEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_rol", nullable = false)
-    private Rol rol;
+    private Role rol;
 
     @Column(name = "state", nullable = false)
     private Boolean state = true;
@@ -43,15 +44,12 @@ public class User extends AbstractEntity {
     @Column(name = "profile_photo", columnDefinition = "TEXT")
     private String profilePhoto;
 
-    /*
-    * Un User puede marcar como favoritos muchos Service.
-    * Un Service puede ser favorito de muchos User.
-    * */
-    @ManyToMany
-    @JoinTable(
-            name = "user_favorites",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "service_id")
-    )
-    private Set<Service> favoriteServices = new HashSet<>();
+    @OneToMany(mappedBy = "user")
+    private Set<UserRole> userRoles = new HashSet<>();
+
+    @OneToOne(mappedBy = "user")
+    private Owner owner;
+
+    @OneToOne(mappedBy = "user")
+    private Carer carer;
 }
