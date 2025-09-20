@@ -1,4 +1,4 @@
-package org.example.cuidadodemascota.entities;
+package org.example.cuidadodemascota.commons.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;
