@@ -7,19 +7,7 @@
     <!--
         Cristian
     -->
-    <!--Tablas ya creadas-->
-    <include file="/db/changelog/changelog-cristian/db.changelog-create_rol_table.xml"/>
-    <include file="/db/changelog/changelog-cristian/db.changelog-create_user_table.xml"/>
-    <include file="/db/changelog/changelog-cristian/db.changelog-create_service_type_table.xml"/>
-    <include file="/db/changelog/changelog-cristian/db.changelog-create_service_table.xml"/>
-    <include file="/db/changelog/changelog-cristian/db.changelog-create_reservation_table.xml"/>
-    <include file="/db/changelog/changelog-cristian/db.changelog-create_rating_table.xml"/>
-    <!--Nueva tabla-->
-    <include file="/db/changelog/changelog-cristian/db.changelog-create_user_favorites_table.xml"/>
-    <!--Nueva columna en rol-->
-    <include file="/db/changelog/changelog-cristian/db.changelog-add_column_rol.xml"/>
-    <!--Eliminando todas las tablas de la BD-->
-    <include file="db/changelog/changelog-cristian/db.changelog-drop_all_tables.xml"/>
+
 
     <!--
         Jazmin
