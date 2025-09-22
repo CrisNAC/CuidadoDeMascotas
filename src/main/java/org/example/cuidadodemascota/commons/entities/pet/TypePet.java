@@ -12,6 +12,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "type_pet")
+@AttributeOverride(name = "id", column = @Column(name = "id_type_pet"))
 public class TypePet extends BaseEntity {
 
     @Column(name = "name", nullable = false, length = 60)

@@ -12,6 +12,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "service_types")
+@AttributeOverride(name = "id", column = @Column(name = "id_service_type"))
 public class ServiceType extends BaseEntity {
 
     @Column(name = "name", nullable = false, length = 100)

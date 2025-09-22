@@ -15,6 +15,11 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "services")
+@AttributeOverrides({
+        @AttributeOverride(name = "id", column = @Column(name = "id_service")),
+        @AttributeOverride(name = "createdAt", column = @Column(name = "created_at")),
+        @AttributeOverride(name = "updatedAt", column = @Column(name = "updated_at"))
+})
 public class Service extends AbstractEntity {
 
     @ManyToOne

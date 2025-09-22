@@ -14,6 +14,11 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "users")
+@AttributeOverrides({
+        @AttributeOverride(name = "id", column = @Column(name = "id_user")),
+        @AttributeOverride(name = "createdAt", column = @Column(name = "created_at")),
+        @AttributeOverride(name = "updatedAt", column = @Column(name = "updated_at"))
+})
 public class User extends AbstractEntity {
 
     @Column(name = "name", nullable = false, length = 60)

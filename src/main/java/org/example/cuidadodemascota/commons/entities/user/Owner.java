@@ -15,6 +15,11 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "owners")
+@AttributeOverrides({
+        @AttributeOverride(name = "id", column = @Column(name = "id_owner")),
+        @AttributeOverride(name = "createdAt", column = @Column(name = "created_at")),
+        @AttributeOverride(name = "updatedAt", column = @Column(name = "updated_at"))
+})
 public class Owner extends AbstractEntity {
 
     @OneToOne

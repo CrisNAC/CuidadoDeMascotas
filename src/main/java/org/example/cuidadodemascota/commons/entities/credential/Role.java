@@ -12,6 +12,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "roles")
+@AttributeOverride(name = "id", column = @Column(name = "id_role"))
 public class Role extends BaseEntity {
 
     @Column(name = "name", nullable = false, length = 50)

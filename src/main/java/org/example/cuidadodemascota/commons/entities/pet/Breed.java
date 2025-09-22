@@ -12,6 +12,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "breed")
+@AttributeOverride(name = "id", column = @Column(name = "id_breed"))
 public class Breed extends BaseEntity {
 
     @ManyToOne
