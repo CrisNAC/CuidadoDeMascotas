@@ -22,8 +22,8 @@ public class User extends AbstractEntity {
     @Column(name = "last_name", nullable = false, length = 60)
     private String lastName;
 
-    @Column(name = "user_name", nullable = false, length = 255)
-    private String userName;
+    @Column(name = "email", nullable = false, unique = true, length = 100)
+    private String email;
 
     @Column(name = "hash_password", nullable = false, columnDefinition = "TEXT")
     private String hashPassword;
@@ -31,18 +31,12 @@ public class User extends AbstractEntity {
     @Column(name = "phone_number", nullable = false, length = 15)
     private String phoneNumber;
 
-    @Column(name = "email", nullable = false, unique = true, length = 100)
-    private String email;
+    @Column(name = "profile_photo", columnDefinition = "TEXT")
+    private String profilePhoto;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_role", nullable = false)
     private Role role;
-
-    @Column(name = "state", nullable = false)
-    private Boolean state = true;
-
-    @Column(name = "profile_photo", columnDefinition = "TEXT")
-    private String profilePhoto;
 
     @OneToMany(mappedBy = "user")
     private Set<UserRole> userRoles = new HashSet<>();

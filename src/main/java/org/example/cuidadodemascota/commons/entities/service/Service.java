@@ -7,6 +7,7 @@ import org.example.cuidadodemascota.commons.entities.base.AbstractEntity;
 import org.example.cuidadodemascota.commons.entities.reservation.ReservationService;
 import org.example.cuidadodemascota.commons.entities.user.Carer;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,8 +28,8 @@ public class Service extends AbstractEntity {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Column(nullable = false)
-    private Double price;
+    @Column(nullable = false, precision = 8, scale = 0)
+    private BigDecimal price;
 
     // 1-N con ReservationService
     @OneToMany(mappedBy = "service", fetch = FetchType.LAZY)

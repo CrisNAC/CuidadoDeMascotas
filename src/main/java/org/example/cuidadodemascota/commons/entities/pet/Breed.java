@@ -18,7 +18,7 @@ public class Breed extends BaseEntity {
     @JoinColumn(name = "fk_type_of_pet", nullable = false)
     private TypePet typePet;
 
-    @Column(nullable = false, length = 60)
+    @Column(name = "name", nullable = false, length = 60)
     private String name;
 
     // 1-N -> pets

@@ -30,11 +30,9 @@ public class Reservation extends AbstractEntity {
     @Column(name = "service_date", nullable = false)
     private LocalDateTime serviceDate;
 
-    private String description;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "enum_reservation_state", nullable = false, length = 20)
-    private ReservationState size;
+    private ReservationState state;
 
     // 1-N -> reservation_services
     @OneToMany(mappedBy = "reservation", fetch = FetchType.LAZY)

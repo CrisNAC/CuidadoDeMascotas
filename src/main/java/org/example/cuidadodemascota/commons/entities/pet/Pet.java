@@ -23,13 +23,14 @@ public class Pet extends AbstractEntity {
     @JoinColumn(name = "fk_breed", nullable = false)
     private Breed breed;
 
-    @Column(nullable = false, length = 60)
+    @Column(name = "name", nullable = false, length = 60)
     private String name;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "enum_pet_sizes", nullable = false, length = 10)
     private PetSize size;
 
+    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
     @Column(name = "date_birthday", nullable = false)

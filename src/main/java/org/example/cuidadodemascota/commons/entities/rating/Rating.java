@@ -18,11 +18,12 @@ public class Rating extends AbstractEntity {
     @JoinColumn(name = "fk_reservation", nullable = false, unique = true)
     private Reservation reservation;
 
-    @Column(nullable = false)
+    @Column(name = "score", nullable = false)
     private Short score;
 
+    @Column(name = "comment")
     private String comment;
 
-    @Column(nullable = false)
+    @Column(name = "date", nullable = false)
     private LocalDateTime date;
 }

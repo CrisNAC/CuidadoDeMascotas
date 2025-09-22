@@ -24,7 +24,10 @@ public class Carer extends AbstractEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "enum_availability_state", nullable = false, length = 20)
-    private AvailabilityState size;
+    private AvailabilityState state;
+
+    @Column (nullable = false)
+    private Short amount_pet;
 
     // 1-N -> services
     @OneToMany(mappedBy = "carer", fetch = FetchType.LAZY)

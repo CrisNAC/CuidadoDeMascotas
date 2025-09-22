@@ -14,7 +14,7 @@ import java.util.Set;
 @Table(name = "type_pet")
 public class TypePet extends BaseEntity {
 
-    @Column(nullable = false, length = 60)
+    @Column(name = "name", nullable = false, length = 60)
     private String name;
 
     // 1-N -> breeds

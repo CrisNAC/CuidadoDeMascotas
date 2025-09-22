@@ -14,7 +14,7 @@ import java.util.Set;
 @Table(name = "service_types")
 public class ServiceType extends BaseEntity {
 
-    @Column(nullable = false, length = 100)
+    @Column(name = "name", nullable = false, length = 100)
     private String name;
 
     // 1-N -> services

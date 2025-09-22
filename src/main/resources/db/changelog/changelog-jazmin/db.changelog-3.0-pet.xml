@@ -1,0 +1,87 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.21.xsd">
+
+    <changeSet id="21092025-create-table-type-pet" author="J-Kanami-PS">
+        <createTable tableName="type_pet">
+            <column name="id_type_pet" type="SERIAL" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(60)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="21092025-create-table-breed" author="J-Kanami-PS">
+        <createTable tableName="breed">
+            <column name="id_breed" type="SERIAL" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="fk_type_of_pet" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(60)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="breed"
+                baseColumnNames="fk_type_of_pet"
+                referencedTableName="type_pet"
+                referencedColumnNames="id_type_pet"
+                constraintName="fk_breed_type_pet"/>
+    </changeSet>
+
+    <changeSet id="21092025-create-table-pets" author="J-Kanami-PS">
+        <createTable tableName="pets">
+            <column name="id_pet" type="SERIAL" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="id_owner" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fk_breed" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="enum_pet_sizes" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="TEXT"/>
+            <column name="date_birthday" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="profile_photo" type="TEXT"/>
+            <column name="created_at" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="active" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="pets"
+                baseColumnNames="id_owner"
+                referencedTableName="owners"
+                referencedColumnNames="id_owner"
+                constraintName="fk_pets_owners"/>
+
+        <addForeignKeyConstraint
+                baseTableName="pets"
+                baseColumnNames="fk_breed"
+                referencedTableName="breed"
+                referencedColumnNames="id_breed"
+                constraintName="fk_pets_breed"/>
+    </changeSet>
+
+</databaseChangeLog>
