@@ -165,6 +165,45 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <!-- Crear jars separados de entities y dtos -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.4.2</version>
+                <executions>
+                    <!-- JAR de Entities -->
+                    <execution>
+                        <id>entities-jar</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>entities</classifier>
+                            <includes>
+                                <include>org/example/cuidadodemascota/commons/entities/**</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+
+                    <!-- JAR de DTOs -->
+                    <execution>
+                        <id>dtos-jar</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>dtos</classifier>
+                            <classesDirectory>${project.build.outputDirectory}</classesDirectory>
+                            <includes>
+                                <include>org/example/cuidadodemascota/commons/dto/**</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>

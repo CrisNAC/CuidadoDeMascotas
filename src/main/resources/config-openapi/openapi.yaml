@@ -334,3 +334,44 @@ components:
             date:
               type: string
               format: date-time
+
+    # ================== LISTAS DE RESPUESTAS ==================
+    UserResponseList:
+      type: array
+      items:
+        $ref: '#/components/schemas/UserResponseDTO'
+
+    OwnerResponseList:
+      type: array
+      items:
+        $ref: '#/components/schemas/OwnerResponseDTO'
+
+    CarerResponseList:
+      type: array
+      items:
+        $ref: '#/components/schemas/CarerResponseDTO'
+
+    PetResponseList:
+      type: array
+      items:
+        $ref: '#/components/schemas/PetResponseDTO'
+
+    ServiceResponseList:
+      type: array
+      items:
+        $ref: '#/components/schemas/ServiceResponseDTO'
+
+    ReservationResponseList:
+      type: array
+      items:
+        $ref: '#/components/schemas/ReservationResponseDTO'
+
+    ReservationServiceResponseList:
+      type: array
+      items:
+        $ref: '#/components/schemas/ReservationServiceResponseDTO'
+
+    RatingResponseList:
+      type: array
+      items:
+        $ref: '#/components/schemas/RatingResponseDTO'
