@@ -4,19 +4,5 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <!--
-        Cristian
-    -->
-    <include file="db/changelog/changelog-cristian/db.changelog-drop_all_tables-v2.xml"/>
-
-    <!--
-        Jazmin
-    -->
-
-
-    <!--
-        Eliana
-    -->
-
 
 </databaseChangeLog>
