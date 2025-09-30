@@ -1,0 +1,46 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+       http://www.liquibase.org/xml/ns/dbchangelog
+       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="21092025-create-table-rating" author="J-Kanami-PS">
+        <createTable tableName="ratings">
+            <!-- Heredados de AbstractEntity -->
+            <column name="id_rating" type="SERIAL" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueDate="NOW()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP" defaultValueDate="NOW()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="active" type="BOOLEAN" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+
+            <!-- Específicos de Rating -->
+            <column name="fk_reservation" type="INTEGER">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="score" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="comment" type="TEXT"/>
+            <column name="date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <!-- Foreign key a reservations -->
+        <addForeignKeyConstraint
+                baseTableName="ratings"
+                baseColumnNames="fk_reservation"
+                constraintName="fk_ratings_reservations"
+                referencedTableName="reservations"
+                referencedColumnNames="id_reservation"/>
+    </changeSet>
+
+</databaseChangeLog>

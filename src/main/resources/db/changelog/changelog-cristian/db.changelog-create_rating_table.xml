@@ -1,0 +1,36 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <!-- ===== Tabla Ratings ===== -->
+    <changeSet id="6" author="CrisNAC">
+        <createTable tableName="ratings">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="fk_reservation" type="BIGINT">
+                <constraints nullable="false" unique="true" foreignKeyName="fk_rating_reservation"
+                             referencedTableName="reservations" referencedColumnNames="id"/>
+            </column>
+            <column name="fk_owner" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_rating_owner"
+                             referencedTableName="users" referencedColumnNames="id"/>
+            </column>
+            <column name="fk_carer" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_rating_carer"
+                             referencedTableName="users" referencedColumnNames="id"/>
+            </column>
+            <column name="score" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="comment" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="TIMESTAMP"/>
+            <column name="created_at" type="TIMESTAMP"/>
+            <column name="updated_at" type="TIMESTAMP"/>
+            <column name="active" type="BOOLEAN" defaultValueBoolean="true"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

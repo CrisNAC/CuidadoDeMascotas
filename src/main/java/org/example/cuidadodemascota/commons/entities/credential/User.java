@@ -1,0 +1,54 @@
+package org.example.cuidadodemascota.commons.entities.credential;
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.example.cuidadodemascota.commons.entities.user.Owner;
+import org.example.cuidadodemascota.commons.entities.user.Carer;
+import org.example.cuidadodemascota.commons.entities.base.AbstractEntity;
+
+import java.util.HashSet;
+import java.util.Set;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "users")
+@AttributeOverrides({
+        @AttributeOverride(name = "id", column = @Column(name = "id_user")),
+        @AttributeOverride(name = "createdAt", column = @Column(name = "created_at")),
+        @AttributeOverride(name = "updatedAt", column = @Column(name = "updated_at"))
+})
+public class User extends AbstractEntity {
+
+    @Column(name = "name", nullable = false, length = 60)
+    private String name;
+
+    @Column(name = "last_name", nullable = false, length = 60)
+    private String lastName;
+
+    @Column(name = "email", nullable = false, unique = true, length = 100)
+    private String email;
+
+    @Column(name = "hash_password", nullable = false, columnDefinition = "TEXT")
+    private String hashPassword;
+
+    @Column(name = "phone_number", nullable = false, length = 15)
+    private String phoneNumber;
+
+    @Column(name = "profile_photo", columnDefinition = "TEXT")
+    private String profilePhoto;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_role", nullable = false)
+    private Role role;
+
+    @OneToMany(mappedBy = "user")
+    private Set<UserRole> userRoles = new HashSet<>();
+
+    @OneToOne(mappedBy = "user")
+    private Owner owner;
+
+    @OneToOne(mappedBy = "user")
+    private Carer carer;
+}

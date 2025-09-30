@@ -1,0 +1,28 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!--
+        Cristian
+    -->
+
+
+    <!--
+        Jazmin
+    -->
+    <include file="db/changelog/changelog-jazmin/db.changelog-1.0-credential.xml"/>
+    <include file="db/changelog/changelog-jazmin/db.changelog-2.0-user.xml"/>
+    <include file="db/changelog/changelog-jazmin/db.changelog-3.0-pet.xml"/>
+    <include file="db/changelog/changelog-jazmin/db.changelog-4.0-service.xml"/>
+    <include file="db/changelog/changelog-jazmin/db.changelog-5.0-reservation.xml"/>
+    <include file="db/changelog/changelog-jazmin/db.changelog-6.0-rating.xml"/>
+
+
+    <!--
+        Eliana
+    -->
+
+
+</databaseChangeLog>

@@ -1,0 +1,411 @@
+openapi: 3.0.3
+info:
+  title: PetCare API
+  version: 1.0.0
+
+paths: {}
+
+components:
+  schemas:
+
+
+    # ================== BASE ==================
+    BaseDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+
+
+    AbstractDTO:
+      allOf:
+        - $ref: '#/components/schemas/BaseDTO'
+        - type: object
+          properties:
+            createdAt:
+              type: string
+              format: date-time
+            updatedAt:
+              type: string
+              format: date-time
+            active:
+              type: boolean
+
+
+    # ================== ROLE ==================
+    RoleRequestDTO:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 50
+
+
+    RoleResponseDTO:
+      allOf:
+        - $ref: '#/components/schemas/BaseDTO'
+        - type: object
+          properties:
+            name:
+              type: string
+
+
+    # ================== USER ==================
+    UserRequestDTO:
+      type: object
+      properties:
+        name:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          writeOnly: true
+        phoneNumber:
+          type: string
+        profilePhoto:
+          type: string
+        roleId:
+          type: integer
+
+
+    UserResponseDTO:
+      allOf:
+        - $ref: '#/components/schemas/AbstractDTO'
+        - type: object
+          properties:
+            name:
+              type: string
+            lastName:
+              type: string
+            email:
+              type: string
+              format: email
+            phoneNumber:
+              type: string
+            profilePhoto:
+              type: string
+            roleId:
+              type: integer
+
+
+    # ================== OWNER ==================
+    OwnerRequestDTO:
+      type: object
+      properties:
+        userId:
+          type: integer
+
+
+    OwnerResponseDTO:
+      allOf:
+        - $ref: '#/components/schemas/AbstractDTO'
+        - type: object
+          properties:
+            userId:
+              type: integer
+
+
+    # ================== CARER ==================
+    CarerRequestDTO:
+      type: object
+      properties:
+        userId:
+          type: integer
+        state:
+          type: string
+          enum: [Available, NotAvailable, Busy]
+        amountPet:
+          type: integer
+          format: int32
+
+
+    CarerResponseDTO:
+      allOf:
+        - $ref: '#/components/schemas/AbstractDTO'
+        - type: object
+          properties:
+            userId:
+              type: integer
+            state:
+              type: string
+              enum: [Available, NotAvailable, Busy]
+            amountPet:
+              type: integer
+              format: int32
+
+
+    # ================== TYPE PET ==================
+    TypePetRequestDTO:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 60
+
+
+    TypePetResponseDTO:
+      allOf:
+        - $ref: '#/components/schemas/BaseDTO'
+        - type: object
+          properties:
+            name:
+              type: string
+
+
+    # ================== BREED ==================
+    BreedRequestDTO:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 60
+        typePetId:
+          type: integer
+
+
+    BreedResponseDTO:
+      allOf:
+        - $ref: '#/components/schemas/BaseDTO'
+        - type: object
+          properties:
+            name:
+              type: string
+            typePetId:
+              type: integer
+
+
+    # ================== PET ==================
+    PetRequestDTO:
+      type: object
+      properties:
+        ownerId:
+          type: integer
+        breedId:
+          type: integer
+        name:
+          type: string
+        size:
+          type: string
+          enum: [Small, Medium, Large]
+        description:
+          type: string
+        birthday:
+          type: string
+          format: date
+        profilePhoto:
+          type: string
+
+
+    PetResponseDTO:
+      allOf:
+        - $ref: '#/components/schemas/AbstractDTO'
+        - type: object
+          properties:
+            ownerId:
+              type: integer
+            breedId:
+              type: integer
+            name:
+              type: string
+            size:
+              type: string
+              enum: [Small, Medium, Large]
+            description:
+              type: string
+            birthday:
+              type: string
+              format: date
+            profilePhoto:
+              type: string
+
+
+    # ================== SERVICE TYPE ==================
+    ServiceTypeRequestDTO:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 100
+
+
+    ServiceTypeResponseDTO:
+      allOf:
+        - $ref: '#/components/schemas/AbstractDTO'
+        - type: object
+          properties:
+            name:
+              type: string
+
+
+    # ================== SERVICE ==================
+    ServiceRequestDTO:
+      type: object
+      properties:
+        carerId:
+          type: integer
+        serviceTypeId:
+          type: integer
+        description:
+          type: string
+        price:
+          type: number
+          format: double
+
+
+    ServiceResponseDTO:
+      allOf:
+        - $ref: '#/components/schemas/AbstractDTO'
+        - type: object
+          properties:
+            carerId:
+              type: integer
+            serviceTypeId:
+              type: integer
+            description:
+              type: string
+            price:
+              type: number
+              format: double
+
+
+    # ================== RESERVATION ==================
+    ReservationRequestDTO:
+      type: object
+      properties:
+        ownerId:
+          type: integer
+        carerId:
+          type: integer
+        serviceDate:
+          type: string
+          format: date-time
+        state:
+          type: string
+          enum: [Pending, Accepted, Rejected, Finished]
+
+
+    ReservationResponseDTO:
+      allOf:
+        - $ref: '#/components/schemas/AbstractDTO'
+        - type: object
+          properties:
+            ownerId:
+              type: integer
+            carerId:
+              type: integer
+            serviceDate:
+              type: string
+              format: date-time
+            state:
+              type: string
+              enum: [Pending, Accepted, Rejected, Finished]
+
+
+    # ================== RESERVATION SERVICE ==================
+    ReservationServiceRequestDTO:
+      type: object
+      properties:
+        reservationId:
+          type: integer
+        serviceId:
+          type: integer
+        petId:
+          type: integer
+
+
+    ReservationServiceResponseDTO:
+      allOf:
+        - $ref: '#/components/schemas/AbstractDTO'
+        - type: object
+          properties:
+            reservationId:
+              type: integer
+            serviceId:
+              type: integer
+            petId:
+              type: integer
+
+
+    # ================== RATING ==================
+    RatingRequestDTO:
+      type: object
+      properties:
+        reservationId:
+          type: integer
+        score:
+          type: integer
+        comment:
+          type: string
+        date:
+          type: string
+          format: date-time
+
+
+    RatingResponseDTO:
+      allOf:
+        - $ref: '#/components/schemas/AbstractDTO'
+        - type: object
+          properties:
+            reservationId:
+              type: integer
+            score:
+              type: integer
+            comment:
+              type: string
+            date:
+              type: string
+              format: date-time
+
+
+    # ================== LISTAS DE RESPUESTAS ==================
+    UserResponseList:
+      type: array
+      items:
+        $ref: '#/components/schemas/UserResponseDTO'
+
+
+    OwnerResponseList:
+      type: array
+      items:
+        $ref: '#/components/schemas/OwnerResponseDTO'
+
+
+    CarerResponseList:
+      type: array
+      items:
+        $ref: '#/components/schemas/CarerResponseDTO'
+
+
+    PetResponseList:
+      type: array
+      items:
+        $ref: '#/components/schemas/PetResponseDTO'
+
+
+    ServiceResponseList:
+      type: array
+      items:
+        $ref: '#/components/schemas/ServiceResponseDTO'
+
+
+    ReservationResponseList:
+      type: array
+      items:
+        $ref: '#/components/schemas/ReservationResponseDTO'
+
+
+    ReservationServiceResponseList:
+      type: array
+      items:
+        $ref: '#/components/schemas/ReservationServiceResponseDTO'
+
+
+    RatingResponseList:
+      type: array
+      items:
+        $ref: '#/components/schemas/RatingResponseDTO'

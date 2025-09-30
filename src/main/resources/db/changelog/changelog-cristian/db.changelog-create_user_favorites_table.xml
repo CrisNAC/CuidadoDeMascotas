@@ -1,0 +1,25 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- ===== Tabla intermedia para ManyToMany User <-> Service ===== -->
+    <changeSet id="7" author="CrisNAC">
+        <createTable tableName="user_favorites">
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_fav_user"
+                             referencedTableName="users" referencedColumnNames="id"/>
+            </column>
+            <column name="service_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_fav_service"
+                             referencedTableName="services" referencedColumnNames="id"/>
+            </column>
+        </createTable>
+
+        <!-- Primary Key compuesta -->
+        <addPrimaryKey tableName="user_favorites"
+                       columnNames="user_id, service_id"
+                       constraintName="pk_user_favorites"/>
+    </changeSet>
+</databaseChangeLog>

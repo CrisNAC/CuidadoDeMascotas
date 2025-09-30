@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.23.xsd">
+
+    <changeSet id="21092025-create-table-owners" author="J-Kanami-PS">
+        <createTable tableName="owners">
+            <column name="id_owner" type="SERIAL" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="id_user" type="INTEGER">
+                <constraints nullable="false" unique="true" foreignKeyName="fk_owners_users"
+                             referencedTableName="users" referencedColumnNames="id_user"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="NOW()"/>
+            <column name="updated_at" type="TIMESTAMP" defaultValueComputed="NOW()"/>
+            <column name="active" type="BOOLEAN" defaultValueBoolean="true"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="21092025-create-table-carers" author="J-Kanami-PS">
+        <createTable tableName="carers">
+            <column name="id_carer" type="SERIAL" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="id_user" type="INTEGER">
+                <constraints nullable="false" unique="true" foreignKeyName="fk_carers_users"
+                             referencedTableName="users" referencedColumnNames="id_user"/>
+            </column>
+            <column name="enum_availability_state" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount_pet" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="NOW()"/>
+            <column name="updated_at" type="TIMESTAMP" defaultValueComputed="NOW()"/>
+            <column name="active" type="BOOLEAN" defaultValueBoolean="true"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
