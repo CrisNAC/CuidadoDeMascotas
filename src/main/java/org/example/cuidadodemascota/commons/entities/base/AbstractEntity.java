@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @Setter
 @MappedSuperclass // <- esta anotacion indica que no se mapea directamente a tabla
 public abstract class AbstractEntity extends BaseEntity {
+
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;

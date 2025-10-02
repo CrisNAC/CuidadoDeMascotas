@@ -1,6 +1,8 @@
 package org.example.cuidadodemascota.commons.entities.service;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.cuidadodemascota.commons.entities.base.AbstractEntity;
@@ -22,18 +24,20 @@ import java.util.Set;
 })
 public class Service extends AbstractEntity {
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_carer", nullable = false)
     private Carer carer;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_service_type", nullable = false)
     private ServiceType serviceType;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
-    @Column(nullable = false, precision = 8, scale = 0)
+    @NotNull
+    @Positive
+    @Column(name = "price", nullable = false, precision = 8, scale = 0)
     private BigDecimal price;
 
     // 1-N con ReservationService

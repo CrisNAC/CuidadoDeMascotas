@@ -3,30 +3,25 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-
     <modelVersion>4.0.0</modelVersion>
-
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.5</version>
+        <version>3.5.5</version>
         <relativePath/>
     </parent>
 
-
     <groupId>org.example</groupId>
     <artifactId>CuidadoDeMascota</artifactId>
-<!-- Para la version del JAR-->
-    <version>0.0.2-PostEntrega2</version>
+    <!-- Para la version del JAR-->
+    <version>0.0.3</version>
     <name>CuidadoDeMascotas</name>
     <description>CuidadoDeMascota</description>
-
 
     <properties>
         <java.version>21</java.version>
     </properties>
-
 
     <!-- =============== DEPENDENCIAS =============== -->
     <dependencies>
@@ -44,13 +39,11 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-
         <!-- Liquibase -->
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
         </dependency>
-
 
         <!-- PostgreSQL -->
         <dependency>
@@ -59,14 +52,12 @@
             <scope>runtime</scope>
         </dependency>
 
-
         <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-
 
         <!-- Tests -->
         <dependency>
@@ -75,14 +66,12 @@
             <scope>test</scope>
         </dependency>
 
-
         <!-- Apache Commons -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.14.0</version>
         </dependency>
-
 
         <!-- Swagger / OpenAPI UI -->
         <dependency>
@@ -142,13 +131,11 @@
                 </configuration>
             </plugin>
 
-
             <!-- Spring Boot -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-
 
             <!-- OpenAPI Generator (solo DTOs) -->
             <plugin>
@@ -163,33 +150,30 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <generatorName>spring</generatorName>
                             <inputSpec>${project.basedir}/src/main/resources/config-openapi/openapi.yaml</inputSpec>
+                            <generatorName>spring</generatorName>
                             <output>${project.build.directory}/generated-sources/openapi</output>
-
 
                             <!-- Solo DTOs -->
                             <modelPackage>org.example.cuidadodemascota.commons.dto</modelPackage>
                             <generateModels>true</generateModels>
-                            <generateApis>false</generateApis>
                             <generateSupportingFiles>false</generateSupportingFiles>
-
+                            <generateApis>false</generateApis>
 
                             <configOptions>
                                 <sourceFolder>src/gen/java</sourceFolder>
                                 <dateLibrary>java8</dateLibrary>
                                 <useBeanValidation>false</useBeanValidation>
                                 <useLombok>true</useLombok>
-                                <!-- Evitar Nullable -->
-                                <nullable>false</nullable>
-                                <!-- No usar JSON / Jackson -->
-                                <validateSpec>false</validateSpec>
+                                <nullable>false</nullable> <!-- Evitar Nullable -->
+                                <validateSpec>false</validateSpec> <!-- No usar JSON / Jackson -->
+                                <skipDefaultInterface>true</skipDefaultInterface> <!-- Esta configuracion obliga al generador a usar 'extends' en la herencia de clases -->
+                                <useInheritance>true</useInheritance>
                             </configOptions>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-
 
             <!-- Registrar fuentes generadas -->
             <plugin>
@@ -212,7 +196,6 @@
                 </executions>
             </plugin>
 
-
             <!-- Crear jars separados de entities y dtos -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -233,7 +216,6 @@
                             </includes>
                         </configuration>
                     </execution>
-
 
                     <!-- JAR de DTOs -->
                     <execution>
