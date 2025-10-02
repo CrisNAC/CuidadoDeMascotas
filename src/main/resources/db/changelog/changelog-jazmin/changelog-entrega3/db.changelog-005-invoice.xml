@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd">
+
+    <changeSet id="01102025-create-table-invoices" author="J-Kanami-PS">
+        <createTable tableName="invoices">
+            <column name="id_invoice" type="SERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="fk_reservation" type="INTEGER">
+                <constraints nullable="false" unique="true"
+                             foreignKeyName="fk_invoices_reservations"
+                             referencedTableName="reservations" referencedColumnNames="id_reservation"/>
+            </column>
+            <column name="issue_date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total_amount" type="NUMERIC(8,0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="updated_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="active" type="BOOLEAN" defaultValueBoolean="true"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="01102025-create-table-payment-methods" author="J-Kanami-PS">
+        <createTable tableName="payment_methods">
+            <column name="id_payment_method" type="SERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(60)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="01102025-create-table-payment-details" author="J-Kanami-PS">
+        <createTable tableName="payment_details">
+            <column name="id_payment_detail" type="SERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="fk_invoice" type="INTEGER">
+                <constraints nullable="false"
+                             foreignKeyName="fk_payment_details_invoices"
+                             referencedTableName="invoices" referencedColumnNames="id_invoice"/>
+            </column>
+            <column name="fk_payment_method" type="INTEGER">
+                <constraints nullable="false"
+                             foreignKeyName="fk_payment_details_payment_methods"
+                             referencedTableName="payment_methods" referencedColumnNames="id_payment_method"/>
+            </column>
+            <column name="applied_amount" type="NUMERIC(8,0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="updated_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="active" type="BOOLEAN" defaultValueBoolean="true"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,11 +1,12 @@
 package org.example.cuidadodemascota.commons.entities.reservation;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.cuidadodemascota.commons.entities.base.AbstractEntity;
 import org.example.cuidadodemascota.commons.entities.enums.ReservationState;
-import org.example.cuidadodemascota.commons.entities.rating.Rating;
+import org.example.cuidadodemascota.commons.entities.invoice.Invoice;
 import org.example.cuidadodemascota.commons.entities.user.Owner;
 import org.example.cuidadodemascota.commons.entities.user.Carer;
 
@@ -24,17 +25,19 @@ import java.util.Set;
 })
 public class Reservation extends AbstractEntity {
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_owner", nullable = false)
     private Owner owner;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_carer", nullable = false)
     private Carer carer;
 
+    @NotNull
     @Column(name = "service_date", nullable = false)
     private LocalDateTime serviceDate;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "enum_reservation_state", nullable = false, length = 20)
     private ReservationState state;
@@ -43,7 +46,6 @@ public class Reservation extends AbstractEntity {
     @OneToMany(mappedBy = "reservation", fetch = FetchType.LAZY)
     private Set<ReservationService> reservationServices = new HashSet<>();
 
-    // 1-1 -> rating
-    @OneToOne(mappedBy = "reservation", fetch = FetchType.LAZY)
-    private Rating rating;
+    @OneToOne(mappedBy = "reservation")
+    private Invoice invoice;
 }

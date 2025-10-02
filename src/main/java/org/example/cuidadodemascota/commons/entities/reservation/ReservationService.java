@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.cuidadodemascota.commons.entities.base.AbstractEntity;
-import org.example.cuidadodemascota.commons.entities.pet.Pet;
 import org.example.cuidadodemascota.commons.entities.service.Service;
 
 @Getter
@@ -18,15 +17,11 @@ import org.example.cuidadodemascota.commons.entities.service.Service;
 })
 public class ReservationService extends AbstractEntity {
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_reservation", nullable = false)
     private Reservation reservation;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_service", nullable = false)
     private Service service;
-
-    @ManyToOne
-    @JoinColumn(name = "fk_pet", nullable = false)
-    private Pet pet;
 }
