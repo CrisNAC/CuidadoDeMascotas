@@ -16,6 +16,7 @@ import org.example.cuidadodemascota.commons.entities.base.AbstractEntity;
 })
 public class UserRole extends AbstractEntity {
 
+    // UserRole es la tabla intermedia
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_role", nullable = false)
     private Role role;

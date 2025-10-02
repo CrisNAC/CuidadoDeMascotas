@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd">
+
+    <changeSet id="01102025-create-table-reservations" author="J-Kanami-PS">
+        <createTable tableName="reservations">
+            <column name="id_reservation" type="SERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="fk_owner" type="INTEGER">
+                <constraints nullable="false" foreignKeyName="fk_reservations_owners"
+                             referencedTableName="owners" referencedColumnNames="id_owner"/>
+            </column>
+            <column name="fk_carer" type="INTEGER">
+                <constraints nullable="false" foreignKeyName="fk_reservations_carers"
+                             referencedTableName="carers" referencedColumnNames="id_carer"/>
+            </column>
+            <column name="service_date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="enum_reservation_state" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="updated_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="active" type="BOOLEAN" defaultValueBoolean="true"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="01102025-create-table-reservation-services" author="J-Kanami-PS">
+        <createTable tableName="reservation_services">
+            <column name="id_reservation_service" type="SERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="fk_reservation" type="INTEGER">
+                <constraints nullable="false" foreignKeyName="fk_reservation_services_reservations"
+                             referencedTableName="reservations" referencedColumnNames="id_reservation"/>
+            </column>
+            <column name="fk_service" type="INTEGER">
+                <constraints nullable="false" foreignKeyName="fk_reservation_services_services"
+                             referencedTableName="services" referencedColumnNames="id_service"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="updated_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="active" type="BOOLEAN" defaultValueBoolean="true"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

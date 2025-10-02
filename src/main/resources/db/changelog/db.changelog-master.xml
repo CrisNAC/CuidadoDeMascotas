@@ -7,12 +7,16 @@
     <!--
         Cristian
     -->
-    <include file="db/changelog/changelog-cristian/db.changelog-drop_all_tables-v2.xml"/>
+
 
     <!--
         Jazmin
     -->
-
+    <include file="/db/changelog/changelog-jazmin/changelog-entrega3/db.changelog-001-credential.xml"/>
+    <include file="/db/changelog/changelog-jazmin/changelog-entrega3/db.changelog-002-user.xml"/>
+    <include file="/db/changelog/changelog-jazmin/changelog-entrega3/db.changelog-003-service.xml"/>
+    <include file="/db/changelog/changelog-jazmin/changelog-entrega3/db.changelog-004-reservation.xml"/>
+    <include file="/db/changelog/changelog-jazmin/changelog-entrega3/db.changelog-005-invoice.xml"/>
 
     <!--
         Eliana

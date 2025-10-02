@@ -1,7 +1,7 @@
 package org.example.cuidadodemascota.commons.entities.enums;
 
 public enum AvailabilityState {
-    Available,
-    NotAvailable,
-    Busy
+    AVAILABLE,
+    NOT_AVAILABLE,
+    BUSY
 }

@@ -1,6 +1,9 @@
 package org.example.cuidadodemascota.commons.entities.user;
 
+
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.cuidadodemascota.commons.entities.base.AbstractEntity;
@@ -23,14 +26,16 @@ import java.util.Set;
 })
 public class Carer extends AbstractEntity {
 
-    @OneToOne
-    @JoinColumn(name = "id_user", nullable = false, unique = true)
+    @OneToOne (fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_user", nullable = false, unique = true)
     private User user;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "enum_availability_state", nullable = false, length = 20)
     private AvailabilityState state;
 
+    @Positive
     @Column (nullable = false)
     private Short amount_pet;
 
