@@ -1,25 +1,6 @@
 spring:
-  datasource:
-    url: jdbc:postgresql://remotedb:5432/cuidado_mascota
-    username: ${DB_USER:postgres}
-    password: ${DB_PASSWORD:postgres}
-    driver-class-name: org.postgresql.Driver
-
-  jpa:
-    hibernate:
-      ddl-auto: none
-    properties:
-      hibernate.format_sql: true
-    show-sql: true
-
-  liquibase:
-    change-log: classpath:/db/changelog/db.changelog-master.xml
-
-logging:
-  level:
-    root: INFO
-    org.springframework.web: DEBUG
-    org.hibernate.SQL: DEBUG
+  application:
+    name: invoces_payments
 
 server:
-  port: 0 # cada microservicio define el suyo en su propio application.yml
+  port: 8082

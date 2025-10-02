@@ -35,3 +35,6 @@ build/
 # Credenciales o configs sensibles
 src/main/resources/application.properties
 src/main/resources/application.yml
+src/main/java/org/example/cuidadodemascota/config/application.yaml
+src/main/java/org/example/cuidadodemascota/microservices/cristian_reservations/config/application.yaml
+src/main/java/org/example/cuidadodemascota/microservices/eliana_invoces_payments/config/application.yaml
