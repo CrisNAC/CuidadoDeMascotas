@@ -15,7 +15,7 @@
     <groupId>org.example</groupId>
     <artifactId>CuidadoDeMascota</artifactId>
     <!-- Para la version del JAR-->
-    <version>0.0.3</version>
+    <version>3.0.0</version>
     <name>CuidadoDeMascotas</name>
     <description>CuidadoDeMascota</description>
 
@@ -144,31 +144,22 @@
                 <version>7.2.0</version>
                 <executions>
                     <execution>
-                        <id>generate-dtos</id>
-                        <phase>generate-sources</phase>
                         <goals>
                             <goal>generate</goal>
                         </goals>
                         <configuration>
                             <inputSpec>${project.basedir}/src/main/resources/config-openapi/openapi.yaml</inputSpec>
                             <generatorName>spring</generatorName>
-                            <output>${project.build.directory}/generated-sources/openapi</output>
 
                             <!-- Solo DTOs -->
                             <modelPackage>org.example.cuidadodemascota.commons.dto</modelPackage>
-                            <generateModels>true</generateModels>
                             <generateSupportingFiles>false</generateSupportingFiles>
                             <generateApis>false</generateApis>
 
                             <configOptions>
-                                <sourceFolder>src/gen/java</sourceFolder>
-                                <dateLibrary>java8</dateLibrary>
-                                <useBeanValidation>false</useBeanValidation>
+                                <skipDefaultInterface>true</skipDefaultInterface>
+                                <useTags>true</useTags>
                                 <useLombok>true</useLombok>
-                                <nullable>false</nullable> <!-- Evitar Nullable -->
-                                <validateSpec>false</validateSpec> <!-- No usar JSON / Jackson -->
-                                <skipDefaultInterface>true</skipDefaultInterface> <!-- Esta configuracion obliga al generador a usar 'extends' en la herencia de clases -->
-                                <useInheritance>true</useInheritance>
                             </configOptions>
                         </configuration>
                     </execution>
