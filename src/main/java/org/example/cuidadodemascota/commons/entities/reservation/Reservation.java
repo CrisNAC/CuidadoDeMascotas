@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.cuidadodemascota.commons.entities.base.AbstractEntity;
-import org.example.cuidadodemascota.commons.entities.enums.ReservationState;
+import org.example.cuidadodemascota.commons.entities.enums.ReservationStateEnum;
 import org.example.cuidadodemascota.commons.entities.invoice.Invoice;
 import org.example.cuidadodemascota.commons.entities.user.Owner;
 import org.example.cuidadodemascota.commons.entities.user.Carer;
@@ -40,7 +40,7 @@ public class Reservation extends AbstractEntity {
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "enum_reservation_state", nullable = false, length = 20)
-    private ReservationState state;
+    private ReservationStateEnum state;
 
     // 1-N -> reservation_services
     @OneToMany(mappedBy = "reservation", fetch = FetchType.LAZY)
