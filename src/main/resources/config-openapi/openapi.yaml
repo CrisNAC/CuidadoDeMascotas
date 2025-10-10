@@ -110,7 +110,7 @@ components:
       properties:
         userId:
           type: integer
-        state:
+        availabilityState:
           type: string
           enum: [AVAILABLE, NOT_AVAILABLE, BUSY]
         amountPet:
@@ -124,7 +124,7 @@ components:
           properties:
             userId:
               type: integer
-            state:
+            availabilityState:
               type: string
               enum: [AVAILABLE, NOT_AVAILABLE, BUSY]
             amountPet:
@@ -187,9 +187,9 @@ components:
         serviceDate:
           type: string
           format: date-time
-        state:
-          type: string
-          enum: [PENDING, ACCEPTED, REJECTED, FINISHED]
+        reservationState:
+            type: string
+            enum: [PENDING, ACCEPTED, REJECTED, FINISHED]
 
     ReservationResponseDTO:
       allOf:
@@ -203,7 +203,7 @@ components:
             serviceDate:
               type: string
               format: date-time
-            state:
+            reservationState:
               type: string
               enum: [PENDING, ACCEPTED, REJECTED, FINISHED]
 

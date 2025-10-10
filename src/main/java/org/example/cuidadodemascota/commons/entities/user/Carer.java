@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.example.cuidadodemascota.commons.entities.base.AbstractEntity;
 import org.example.cuidadodemascota.commons.entities.credential.User;
-import org.example.cuidadodemascota.commons.entities.enums.AvailabilityState;
+import org.example.cuidadodemascota.commons.entities.enums.AvailabilityStateEnum;
 import org.example.cuidadodemascota.commons.entities.reservation.Reservation;
 import org.example.cuidadodemascota.commons.entities.service.Service;
 
@@ -33,7 +33,7 @@ public class Carer extends AbstractEntity {
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "enum_availability_state", nullable = false, length = 20)
-    private AvailabilityState state;
+    private AvailabilityStateEnum state;
 
     @Positive
     @Column (nullable = false)
