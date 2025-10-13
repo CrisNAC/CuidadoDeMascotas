@@ -5,7 +5,8 @@ info:
 
 servers:
   - url: http://localhost:8080/api/v1
-    description: Base URL for User API
+    description: Base URL for API
+
 paths: {}
 
 components:
@@ -33,6 +34,17 @@ components:
             active:
               type: boolean
 
+    BaseResult:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          example: 25
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/BaseDTO'
+
     # ================== ROLE ==================
     RoleRequestDTO:
       type: object
@@ -48,6 +60,16 @@ components:
           properties:
             name:
               type: string
+
+    RoleResult:
+      allOf:
+        - $ref: '#/components/schemas/BaseResult'
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/RoleResponseDTO'
 
     # ================== USER ==================
     UserRequestDTO:
@@ -81,13 +103,22 @@ components:
               type: string
             email:
               type: string
-              format: email
             phoneNumber:
               type: string
             profilePhoto:
               type: string
             roleId:
               type: integer
+
+    UserResult:
+      allOf:
+        - $ref: '#/components/schemas/BaseResult'
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/UserResponseDTO'
 
     # ================== OWNER ==================
     OwnerRequestDTO:
@@ -103,6 +134,16 @@ components:
           properties:
             userId:
               type: integer
+
+    OwnerResult:
+      allOf:
+        - $ref: '#/components/schemas/BaseResult'
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/OwnerResponseDTO'
 
     # ================== CARER ==================
     CarerRequestDTO:
@@ -131,6 +172,16 @@ components:
               type: integer
               format: int32
 
+    CarerResult:
+      allOf:
+        - $ref: '#/components/schemas/BaseResult'
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/CarerResponseDTO'
+
     # ================== SERVICE TYPE ==================
     ServiceTypeRequestDTO:
       type: object
@@ -146,6 +197,16 @@ components:
           properties:
             name:
               type: string
+
+    ServiceTypeResult:
+      allOf:
+        - $ref: '#/components/schemas/BaseResult'
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/ServiceTypeResponseDTO'
 
     # ================== SERVICE ==================
     ServiceRequestDTO:
@@ -176,6 +237,16 @@ components:
               type: number
               format: double
 
+    ServiceResult:
+      allOf:
+        - $ref: '#/components/schemas/BaseResult'
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/ServiceResponseDTO'
+
     # ================== RESERVATION ==================
     ReservationRequestDTO:
       type: object
@@ -188,8 +259,8 @@ components:
           type: string
           format: date-time
         reservationState:
-            type: string
-            enum: [PENDING, ACCEPTED, REJECTED, FINISHED]
+          type: string
+          enum: [PENDING, ACCEPTED, REJECTED, FINISHED]
 
     ReservationResponseDTO:
       allOf:
@@ -206,6 +277,16 @@ components:
             reservationState:
               type: string
               enum: [PENDING, ACCEPTED, REJECTED, FINISHED]
+
+    ReservationResult:
+      allOf:
+        - $ref: '#/components/schemas/BaseResult'
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/ReservationResponseDTO'
 
     # ================== RESERVATION SERVICE ==================
     ReservationServiceRequestDTO:
@@ -225,6 +306,16 @@ components:
               type: integer
             serviceId:
               type: integer
+
+    ReservationServiceResult:
+      allOf:
+        - $ref: '#/components/schemas/BaseResult'
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/ReservationServiceResponseDTO'
 
     # ================== INVOICE ==================
     InvoiceRequestDTO:
@@ -253,6 +344,16 @@ components:
               type: number
               format: double
 
+    InvoiceResult:
+      allOf:
+        - $ref: '#/components/schemas/BaseResult'
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/InvoiceResponseDTO'
+
     # ================== PAYMENT METHOD ==================
     PaymentMethodRequestDTO:
       type: object
@@ -268,6 +369,16 @@ components:
           properties:
             name:
               type: string
+
+    PaymentMethodResult:
+      allOf:
+        - $ref: '#/components/schemas/BaseResult'
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/PaymentMethodResponseDTO'
 
     # ================== PAYMENT DETAIL ==================
     PaymentDetailRequestDTO:
@@ -294,48 +405,12 @@ components:
               type: number
               format: double
 
-    # ================== LISTAS ==================
-    UserResponseList:
-      type: array
-      items:
-        $ref: '#/components/schemas/UserResponseDTO'
-
-    OwnerResponseList:
-      type: array
-      items:
-        $ref: '#/components/schemas/OwnerResponseDTO'
-
-    CarerResponseList:
-      type: array
-      items:
-        $ref: '#/components/schemas/CarerResponseDTO'
-
-    ServiceResponseList:
-      type: array
-      items:
-        $ref: '#/components/schemas/ServiceResponseDTO'
-
-    ReservationResponseList:
-      type: array
-      items:
-        $ref: '#/components/schemas/ReservationResponseDTO'
-
-    ReservationServiceResponseList:
-      type: array
-      items:
-        $ref: '#/components/schemas/ReservationServiceResponseDTO'
-
-    InvoiceResponseList:
-      type: array
-      items:
-        $ref: '#/components/schemas/InvoiceResponseDTO'
-
-    PaymentMethodResponseList:
-      type: array
-      items:
-        $ref: '#/components/schemas/PaymentMethodResponseDTO'
-
-    PaymentDetailResponseList:
-      type: array
-      items:
-        $ref: '#/components/schemas/PaymentDetailResponseDTO'
+    PaymentDetailResult:
+      allOf:
+        - $ref: '#/components/schemas/BaseResult'
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/PaymentDetailResponseDTO'
