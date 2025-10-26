@@ -230,7 +230,7 @@ components:
               format: int64
             carerId:
               type: integer
-              format: inte64
+              format: int64
             serviceDate:
               type: string
               format: date-time
