@@ -4,5 +4,6 @@ public enum ReservationStateEnum {
     PENDING,
     ACCEPTED,
     REJECTED,
-    FINISHED
+    FINISHED,
+    PAID
 }

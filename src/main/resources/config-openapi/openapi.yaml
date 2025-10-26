@@ -51,7 +51,7 @@ components:
       properties:
         name:
           type: string
-          maxLength: 50
+          maxLength: 10
 
     RoleResponseDTO:
       allOf:
@@ -77,20 +77,30 @@ components:
       properties:
         name:
           type: string
+          maxLength: 60
         lastName:
           type: string
+          maxLength: 60
         email:
           type: string
           format: email
+          maxLength: 100
         password:
           type: string
           writeOnly: true
         phoneNumber:
           type: string
+          pattern: '^[+]?[0-9]{9,13}$'
+          example: '+595 985 123456'
+          description: Debe contener entre 9 y 13 dígitos numéricos.
         profilePhoto:
           type: string
         roleId:
           type: integer
+          format: int64
+        availabilityState:
+          type: string
+          enum: [ AVAILABLE, NOT_AVAILABLE, BUSY ]
 
     UserResponseDTO:
       allOf:
@@ -109,6 +119,10 @@ components:
               type: string
             roleId:
               type: integer
+              format: int64
+            availabilityState:
+              type: string
+              enum: [ AVAILABLE, NOT_AVAILABLE, BUSY ]
 
     UserResult:
       allOf:
@@ -119,68 +133,6 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/UserResponseDTO'
-
-    # ================== OWNER ==================
-    OwnerRequestDTO:
-      type: object
-      properties:
-        userId:
-          type: integer
-
-    OwnerResponseDTO:
-      allOf:
-        - $ref: '#/components/schemas/AbstractDTO'
-        - type: object
-          properties:
-            userId:
-              type: integer
-
-    OwnerResult:
-      allOf:
-        - $ref: '#/components/schemas/BaseResult'
-        - type: object
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/OwnerResponseDTO'
-
-    # ================== CARER ==================
-    CarerRequestDTO:
-      type: object
-      properties:
-        userId:
-          type: integer
-        availabilityState:
-          type: string
-          enum: [AVAILABLE, NOT_AVAILABLE, BUSY]
-        amountPet:
-          type: integer
-          format: int32
-
-    CarerResponseDTO:
-      allOf:
-        - $ref: '#/components/schemas/AbstractDTO'
-        - type: object
-          properties:
-            userId:
-              type: integer
-            availabilityState:
-              type: string
-              enum: [AVAILABLE, NOT_AVAILABLE, BUSY]
-            amountPet:
-              type: integer
-              format: int32
-
-    CarerResult:
-      allOf:
-        - $ref: '#/components/schemas/BaseResult'
-        - type: object
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/CarerResponseDTO'
 
     # ================== SERVICE TYPE ==================
     ServiceTypeRequestDTO:
@@ -214,8 +166,10 @@ components:
       properties:
         carerId:
           type: integer
+          format: int64
         serviceTypeId:
           type: integer
+          format: int64
         description:
           type: string
         price:
@@ -229,8 +183,10 @@ components:
           properties:
             carerId:
               type: integer
+              format: int64
             serviceTypeId:
               type: integer
+              format: int64
             description:
               type: string
             price:
@@ -253,14 +209,16 @@ components:
       properties:
         ownerId:
           type: integer
+          format: int64
         carerId:
           type: integer
+          format: int64
         serviceDate:
           type: string
           format: date-time
         reservationState:
           type: string
-          enum: [PENDING, ACCEPTED, REJECTED, FINISHED]
+          enum: [PENDING, ACCEPTED, REJECTED, FINISHED, PAID]
 
     ReservationResponseDTO:
       allOf:
@@ -269,14 +227,16 @@ components:
           properties:
             ownerId:
               type: integer
+              format: int64
             carerId:
               type: integer
+              format: inte64
             serviceDate:
               type: string
               format: date-time
             reservationState:
               type: string
-              enum: [PENDING, ACCEPTED, REJECTED, FINISHED]
+              enum: [PENDING, ACCEPTED, REJECTED, FINISHED, PAID]
 
     ReservationResult:
       allOf:
@@ -294,8 +254,10 @@ components:
       properties:
         reservationId:
           type: integer
+          format: int64
         serviceId:
           type: integer
+          format: int64
 
     ReservationServiceResponseDTO:
       allOf:
@@ -304,8 +266,10 @@ components:
           properties:
             reservationId:
               type: integer
+              format: int64
             serviceId:
               type: integer
+              format: int64
 
     ReservationServiceResult:
       allOf:
@@ -323,6 +287,7 @@ components:
       properties:
         reservationId:
           type: integer
+          format: int64
         issueDate:
           type: string
           format: date-time
@@ -337,6 +302,7 @@ components:
           properties:
             reservationId:
               type: integer
+              format: int64
             issueDate:
               type: string
               format: date-time
@@ -386,8 +352,10 @@ components:
       properties:
         invoiceId:
           type: integer
+          format: int64
         paymentMethodId:
           type: integer
+          format: int64
         appliedAmount:
           type: number
           format: double
@@ -399,8 +367,10 @@ components:
           properties:
             invoiceId:
               type: integer
+              format: int64
             paymentMethodId:
               type: integer
+              format: int64
             appliedAmount:
               type: number
               format: double

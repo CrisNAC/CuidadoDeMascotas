@@ -1,18 +1,11 @@
-package org.example.cuidadodemascota.commons.entities.credential;
+package org.example.cuidadodemascota.commons.entities.user;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.example.cuidadodemascota.commons.entities.user.Owner;
-import org.example.cuidadodemascota.commons.entities.user.Carer;
+import org.example.cuidadodemascota.commons.entities.enums.AvailabilityStateEnum;
 import org.example.cuidadodemascota.commons.entities.base.AbstractEntity;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -41,27 +34,24 @@ public class User extends AbstractEntity {
     private String email;
 
     @NotBlank
-    @Column(name = "hash_password", nullable = false, columnDefinition = "TEXT")
-    private String hashPassword;
+    @Column(name = "password", nullable = false, columnDefinition = "TEXT")
+    private String password;
 
+    // 0985 123456 o +595 985 123456
     @NotBlank
-    @Pattern(regexp = "\\d{10,15}", message = "Debe tener entre 10 y 15 digitos")
-    @Column(name = "phone_number", nullable = false, length = 15)
+    @Pattern(regexp = "\\d{10,13}", message = "Debe tener entre 10 y 13 digitos")
+    @Column(name = "phone_number", nullable = false, length = 13)
     private String phoneNumber;
 
     @Column(name = "profile_photo", columnDefinition = "TEXT")
     private String profilePhoto;
 
-    // relfeja la relacion con UserRole
-    // N:M entre users y roles
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private Set<UserRole> userRoles = new HashSet<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_role", nullable = false)
+    private Role role;
 
-    // 1-1 con dueño
-    @OneToOne(mappedBy = "user")
-    private Owner owner;
-
-    // 1-1 con cuidador
-    @OneToOne(mappedBy = "user")
-    private Carer carer;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "enum_availability_state", nullable = false, length = 20)
+    private AvailabilityStateEnum state;
 }
