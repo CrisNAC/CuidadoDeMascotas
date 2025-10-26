@@ -36,4 +36,12 @@
                 constraintName="fk_user_role"/>
     </changeSet>
 
+    <changeSet id="26102025_rename-column-password" author="CrisNAC">
+        <renameColumn
+                tableName="users"
+                oldColumnName="hash_password"
+                newColumnName="password"
+                columnDataType="varchar(255)"/>
+    </changeSet>
+
 </databaseChangeLog>
