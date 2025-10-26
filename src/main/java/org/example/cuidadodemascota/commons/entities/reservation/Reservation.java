@@ -5,11 +5,9 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.cuidadodemascota.commons.entities.base.AbstractEntity;
+import org.example.cuidadodemascota.commons.entities.user.User;
 import org.example.cuidadodemascota.commons.entities.enums.ReservationStateEnum;
 import org.example.cuidadodemascota.commons.entities.invoice.Invoice;
-import org.example.cuidadodemascota.commons.entities.user.Owner;
-import org.example.cuidadodemascota.commons.entities.user.Carer;
-
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -27,11 +25,11 @@ public class Reservation extends AbstractEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_owner", nullable = false)
-    private Owner owner;
+    private User owner;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_carer", nullable = false)
-    private Carer carer;
+    private User carer;
 
     @NotNull
     @Column(name = "service_date", nullable = false)

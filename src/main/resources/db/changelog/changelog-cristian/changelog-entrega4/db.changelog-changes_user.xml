@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd">
+
+    <changeSet id="25102025_add-columns-role-availability_state" author="CrisNAC">
+        <!-- Agregar columnas nuevas como NULLABLE -->
+        <addColumn tableName="users">
+            <column name="fk_role" type="INTEGER" defaultValueNumeric="1"/>
+            <column name="enum_availability_state" type="VARCHAR(20)" defaultValue="AVAILABLE"/>
+        </addColumn>
+
+        <!-- Actualizar valores existentes -->
+        <update tableName="users">
+            <column name="fk_role" valueNumeric="1"/>
+            <where>fk_role IS NULL</where>
+        </update>
+
+        <update tableName="users">
+            <column name="enum_availability_state" value="AVAILABLE"/>
+            <where>enum_availability_state IS NULL</where>
+        </update>
+
+        <!-- Establecer las columnas como NOT NULL -->
+        <addNotNullConstraint tableName="users" columnName="fk_role" columnDataType="INTEGER"/>
+        <addNotNullConstraint tableName="users" columnName="enum_availability_state" columnDataType="VARCHAR(20)"/>
+
+        <!-- Crear la Foreign Key -->
+        <addForeignKeyConstraint
+                baseTableName="users"
+                baseColumnNames="fk_role"
+                referencedTableName="roles"
+                referencedColumnNames="id_role"
+                constraintName="fk_user_role"/>
+    </changeSet>
+
+</databaseChangeLog>

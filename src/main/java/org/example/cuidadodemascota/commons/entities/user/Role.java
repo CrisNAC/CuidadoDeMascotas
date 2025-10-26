@@ -1,4 +1,4 @@
-package org.example.cuidadodemascota.commons.entities.credential;
+package org.example.cuidadodemascota.commons.entities.user;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -18,11 +18,15 @@ import java.util.Set;
 public class Role extends BaseEntity {
 
     @NotBlank(message = "El nombre del rol es obligatorio")
-    @Size(max = 50)
-    @Column(name = "name", nullable = false, length = 50)
+    @Size(max = 10)
+    @Column(name = "name", nullable = false, length = 10)
     private String name;
 
-    // refleja el lado 1 de la relacion con UserRole
     @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
-    private Set<UserRole> userRoles = new HashSet<>();
+    private Set<User> users = new HashSet<>();
+
+    //refleja el lado 1 de la relacion con UserRole
+//    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
+//    private Set<UserRole> userRoles = new HashSet<>();
+
 }

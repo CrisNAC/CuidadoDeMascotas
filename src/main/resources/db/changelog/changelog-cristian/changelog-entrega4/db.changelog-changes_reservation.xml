@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd">
+
+    <changeSet id="25102025-changes-reservation_owner" author="CrisNAC">
+        <preConditions onFail="MARK_RAN">
+            <foreignKeyConstraintExists foreignKeyName="fk_reservations_owners"/>
+        </preConditions>
+        <dropForeignKeyConstraint baseTableName="reservations" constraintName="fk_reservations_owners"/>
+
+        <addForeignKeyConstraint
+                baseTableName="reservations"
+                baseColumnNames="fk_owner"
+                constraintName="fk_reservations_owners"
+                referencedTableName="users"
+                referencedColumnNames="id_user"
+        />
+    </changeSet>
+
+    <changeSet id="25102025-changes-reservation_carer" author="CrisNAC">
+        <preConditions onFail="MARK_RAN">
+            <foreignKeyConstraintExists foreignKeyName="fk_reservations_carers"/>
+        </preConditions>
+        <dropForeignKeyConstraint baseTableName="reservations" constraintName="fk_reservations_carers"/>
+
+        <addForeignKeyConstraint
+                baseTableName="reservations"
+                baseColumnNames="fk_carer"
+                constraintName="fk_reservations_carers"
+                referencedTableName="users"
+                referencedColumnNames="id_user"
+        />
+    </changeSet>
+
+</databaseChangeLog>

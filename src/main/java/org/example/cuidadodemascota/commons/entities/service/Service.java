@@ -6,8 +6,8 @@ import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.cuidadodemascota.commons.entities.base.AbstractEntity;
+import org.example.cuidadodemascota.commons.entities.user.User;
 import org.example.cuidadodemascota.commons.entities.reservation.ReservationService;
-import org.example.cuidadodemascota.commons.entities.user.Carer;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -26,7 +26,7 @@ public class Service extends AbstractEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_carer", nullable = false)
-    private Carer carer;
+    private User carer;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_service_type", nullable = false)
