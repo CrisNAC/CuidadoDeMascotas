@@ -44,4 +44,8 @@
                 columnDataType="varchar(255)"/>
     </changeSet>
 
+    <changeSet id="26102025_modify_data_type" author="CrisNAC">
+        <modifyDataType tableName="users" columnName="password" newDataType="TEXT"/>
+    </changeSet>
+
 </databaseChangeLog>

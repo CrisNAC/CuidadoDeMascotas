@@ -134,6 +134,47 @@ components:
               items:
                 $ref: '#/components/schemas/UserResponseDTO'
 
+    # ================== USER ROLE ==================
+    UserRoleRequestDTO:
+      type: object
+      properties:
+        userId:
+          type: integer
+          format: int64
+          description: ID del usuario asociado al rol.
+        roleId:
+          type: integer
+          format: int64
+          description: ID del rol asignado al usuario.
+
+    UserRoleResponseDTO:
+      allOf:
+        - $ref: '#/components/schemas/AbstractDTO'
+        - type: object
+          properties:
+            userRoleId:
+              type: integer
+              format: int64
+              description: ID del rol de usuario.
+            userId:
+              type: integer
+              format: int64
+              description: ID del usuario asociado.
+            roleId:
+              type: integer
+              format: int64
+              description: ID del rol asociado.
+
+    UserRoleResult:
+      allOf:
+        - $ref: '#/components/schemas/BaseResult'
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/UserRoleResponseDTO'
+
     # ================== SERVICE TYPE ==================
     ServiceTypeRequestDTO:
       type: object
