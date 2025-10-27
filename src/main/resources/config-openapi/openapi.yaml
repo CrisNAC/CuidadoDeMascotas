@@ -95,9 +95,6 @@ components:
           description: Debe contener entre 9 y 13 dígitos numéricos.
         profilePhoto:
           type: string
-        roleId:
-          type: integer
-          format: int64
         availabilityState:
           type: string
           enum: [ AVAILABLE, NOT_AVAILABLE, BUSY ]
@@ -117,9 +114,6 @@ components:
               type: string
             profilePhoto:
               type: string
-            roleId:
-              type: integer
-              format: int64
             availabilityState:
               type: string
               enum: [ AVAILABLE, NOT_AVAILABLE, BUSY ]
@@ -152,10 +146,6 @@ components:
         - $ref: '#/components/schemas/AbstractDTO'
         - type: object
           properties:
-            userRoleId:
-              type: integer
-              format: int64
-              description: ID del rol de usuario.
             userId:
               type: integer
               format: int64
