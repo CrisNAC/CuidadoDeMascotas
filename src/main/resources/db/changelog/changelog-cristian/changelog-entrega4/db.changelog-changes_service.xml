@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd">
+
+    <changeSet id="25102025-changes-service-fk-carer-toUser" author="CrisNAC">
+        <!-- Solo borra si existe -->
+        <preConditions onFail="MARK_RAN">
+            <foreignKeyConstraintExists foreignKeyName="fk_services_carers"/>
+        </preConditions>
+        <dropForeignKeyConstraint baseTableName="services" constraintName="fk_services_carers"/>
+
+        <addForeignKeyConstraint
+                baseTableName="services"
+                baseColumnNames="fk_carer"
+                constraintName="fk_services_carers"
+                referencedTableName="users"
+                referencedColumnNames="id_user"
+        />
+    </changeSet>
+</databaseChangeLog>

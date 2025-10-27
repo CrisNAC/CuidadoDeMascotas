@@ -1,4 +1,4 @@
-package org.example.cuidadodemascota.commons.entities.credential;
+package org.example.cuidadodemascota.commons.entities.user;
 
 import jakarta.persistence.*;
 import lombok.Getter;
