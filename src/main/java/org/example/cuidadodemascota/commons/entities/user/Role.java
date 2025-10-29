@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.cuidadodemascota.commons.entities.base.BaseEntity;
+import org.example.cuidadodemascota.commons.entities.user.UserRole;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,11 +23,8 @@ public class Role extends BaseEntity {
     @Column(name = "name", nullable = false, length = 10)
     private String name;
 
-    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
-    private Set<User> users = new HashSet<>();
-
     //refleja el lado 1 de la relacion con UserRole
-//    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
-//    private Set<UserRole> userRoles = new HashSet<>();
+    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
+    private Set<UserRole> userRoles = new HashSet<>();
 
 }

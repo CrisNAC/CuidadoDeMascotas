@@ -95,9 +95,6 @@ components:
           description: Debe contener entre 9 y 13 dígitos numéricos.
         profilePhoto:
           type: string
-        roleId:
-          type: integer
-          format: int64
         availabilityState:
           type: string
           enum: [ AVAILABLE, NOT_AVAILABLE, BUSY ]
@@ -117,9 +114,6 @@ components:
               type: string
             profilePhoto:
               type: string
-            roleId:
-              type: integer
-              format: int64
             availabilityState:
               type: string
               enum: [ AVAILABLE, NOT_AVAILABLE, BUSY ]
@@ -133,6 +127,43 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/UserResponseDTO'
+
+    # ================== USER ROLE ==================
+    UserRoleRequestDTO:
+      type: object
+      properties:
+        userId:
+          type: integer
+          format: int64
+          description: ID del usuario asociado al rol.
+        roleId:
+          type: integer
+          format: int64
+          description: ID del rol asignado al usuario.
+
+    UserRoleResponseDTO:
+      allOf:
+        - $ref: '#/components/schemas/AbstractDTO'
+        - type: object
+          properties:
+            userId:
+              type: integer
+              format: int64
+              description: ID del usuario asociado.
+            roleId:
+              type: integer
+              format: int64
+              description: ID del rol asociado.
+
+    UserRoleResult:
+      allOf:
+        - $ref: '#/components/schemas/BaseResult'
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/UserRoleResponseDTO'
 
     # ================== SERVICE TYPE ==================
     ServiceTypeRequestDTO:
@@ -230,7 +261,7 @@ components:
               format: int64
             carerId:
               type: integer
-              format: inte64
+              format: int64
             serviceDate:
               type: string
               format: date-time

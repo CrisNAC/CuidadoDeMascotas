@@ -7,6 +7,9 @@ import lombok.Setter;
 import org.example.cuidadodemascota.commons.entities.enums.AvailabilityStateEnum;
 import org.example.cuidadodemascota.commons.entities.base.AbstractEntity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Getter
 @Setter
 @Entity
@@ -46,12 +49,13 @@ public class User extends AbstractEntity {
     @Column(name = "profile_photo", columnDefinition = "TEXT")
     private String profilePhoto;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_role", nullable = false)
-    private Role role;
-
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "enum_availability_state", nullable = false, length = 20)
     private AvailabilityStateEnum state;
+
+    // relfeja la relacion con UserRole
+    // N:M entre users y roles
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private Set<UserRole> userRoles = new HashSet<>();
 }
