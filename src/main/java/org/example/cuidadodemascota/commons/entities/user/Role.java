@@ -22,11 +22,11 @@ public class Role extends BaseEntity {
     @Column(name = "name", nullable = false, length = 10)
     private String name;
 
-    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
-    private Set<User> users = new HashSet<>();
+  /*  @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
+    private Set<User> users = new HashSet<>();*/
 
     //refleja el lado 1 de la relacion con UserRole
-    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "role", fetch = FetchType.EAGER)
     private Set<UserRole> userRoles = new HashSet<>();
 
 }

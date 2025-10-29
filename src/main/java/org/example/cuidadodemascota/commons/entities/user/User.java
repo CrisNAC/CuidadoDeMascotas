@@ -49,17 +49,20 @@ public class User extends AbstractEntity {
     @Column(name = "profile_photo", columnDefinition = "TEXT")
     private String profilePhoto;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_role", nullable = false)
-    private Role role;
+   /* @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_role", nullable = true)
+    private Role role;*/
 
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "enum_availability_state", nullable = false, length = 20)
-    private AvailabilityStateEnum state;
+    private AvailabilityStateEnum state = AvailabilityStateEnum.AVAILABLE; // valor por defecto
 
     // relfeja la relacion con UserRole
     // N:M entre users y roles
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private Set<UserRole> userRoles;
+/*
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private Set<UserRole> userRoles = new HashSet<>();
+    private Set<UserRole> userRoles = new HashSet<>();*/
 }
