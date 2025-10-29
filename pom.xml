@@ -15,7 +15,7 @@
     <groupId>org.example</groupId>
     <artifactId>CuidadoDeMascota</artifactId>
     <!-- Para la version del JAR-->
-    <version>3.0.1</version>
+    <version>4.0.0</version>
     <name>CuidadoDeMascotas</name>
     <description>CuidadoDeMascota</description>
 

@@ -48,4 +48,9 @@
         <modifyDataType tableName="users" columnName="password" newDataType="TEXT"/>
     </changeSet>
 
+    <changeSet id="27102025_delete_fk_role" author="CrisNAC">
+        <dropForeignKeyConstraint baseTableName="users" constraintName="fk_user_role"/>
+        <dropColumn tableName="users" columnName="fk_role"/>
+    </changeSet>
+
 </databaseChangeLog>

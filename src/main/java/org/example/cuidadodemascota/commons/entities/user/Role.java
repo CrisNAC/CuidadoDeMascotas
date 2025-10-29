@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.cuidadodemascota.commons.entities.base.BaseEntity;
+import org.example.cuidadodemascota.commons.entities.user.UserRole;
 
 import java.util.HashSet;
 import java.util.Set;
