@@ -57,5 +57,5 @@ public class User extends AbstractEntity {
     // relfeja la relacion con UserRole
     // N:M entre users y roles
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private Set<UserRole> userRoles = new HashSet<>();
+    private Set<UserRole> userRoles;
 }
